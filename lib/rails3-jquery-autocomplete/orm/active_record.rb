@@ -18,8 +18,7 @@ module Rails3JQueryAutocomplete
         limit   = get_autocomplete_limit(options)
         order   = get_autocomplete_order(method, options, model)
 
-
-        items = model.scoped
+        items = (options[:unscoped]) ? model.unscoped : model.scoped
 
         scopes.each { |scope| items = items.send(scope) } unless scopes.empty?
 
